@@ -20,7 +20,7 @@ public class Piece {
     BufferedImage sheet;
     {
         try{
-            sheet = ImageIO.read(ClassLoader.getSystemResourceAsStream("pieces.png"));
+            sheet = ImageIO.read(ClassLoader.getSystemResourceAsStream("chess_pieces.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
