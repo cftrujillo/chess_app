@@ -10,6 +10,8 @@ public class Board extends JPanel {
 
     public int tileSize = 85;
 
+    public int toMove = 0;
+
     int cols = 8;
     int rows = 8;
 

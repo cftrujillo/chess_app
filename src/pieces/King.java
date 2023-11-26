@@ -21,6 +21,12 @@ public class King extends Piece {
     }
 
     public boolean isValidMovement(int col, int row) {
+        if(board.toMove % 2 != 0 && this.isWhite) {
+            return false;
+        } else if(board.toMove % 2 == 0 && !this.isWhite) {
+            return false;
+        }
+
         return Math.abs((col - this.col) * (row - this.row)) == 1 || Math.abs(col - this.col) + Math.abs(row - this.row) == 1 || canCastle(col, row);
     }
 

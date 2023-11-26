@@ -20,6 +20,12 @@ public class Pawn extends Piece {
     }
 
     public boolean isValidMovement(int col, int row) {
+        if(board.toMove % 2 != 0 && this.isWhite) {
+            return false;
+        } else if(board.toMove % 2 == 0 && !this.isWhite) {
+            return false;
+        }
+
         int colorIndex = isWhite ? 1 : -1;
 
         //push on 1

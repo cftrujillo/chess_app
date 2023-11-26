@@ -20,6 +20,12 @@ public class Bishop extends Piece {
     }
 
     public boolean isValidMovement(int col, int row) {
+        if(board.toMove % 2 != 0 && this.isWhite) {
+            return false;
+        } else if(board.toMove % 2 == 0 && !this.isWhite) {
+            return false;
+        }
+
         return Math.abs(this.col - col) == Math.abs(this.row - row);
     }
 
