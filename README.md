@@ -15,6 +15,6 @@
 7. Click the 'Clone' button in the bottom right and wait for the IDE to load the project.
 8. Once loaded, make sure you have the current version of the JDK installed (IntelliJ should prompt you with an installation in the bottom right once you load the project).
 9. After JDK is up to date, click on the 'Run Main' green arrow at the top of the IDE:
-10. ![click_on_run_button](https://github.com/cftrujillo/chess_app/assets/99206212/fac563e1-44df-414b-b4ec-548eb1ce9f6c)
-11. After that, you should have a window launched with the chess engine and are ready to play!:
+![click_on_run_button](https://github.com/cftrujillo/chess_app/assets/99206212/fac563e1-44df-414b-b4ec-548eb1ce9f6c)
+10. After that, you should have a window launched with the chess engine and are ready to play!:
 ![chesster_app](https://github.com/cftrujillo/chess_app/assets/99206212/56b8a518-5337-4454-af46-8a3b366bf7d4)
