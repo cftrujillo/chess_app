@@ -10,9 +10,9 @@ public class Board extends JPanel {
 
     public int colorIndex = 0;
 
-    public Color[] darkSqrOptions = {new Color(37, 107, 41, 255), new Color(63, 43, 12)};
+    public Color[] darkSqrOptions = {new Color(37, 107, 41, 255), new Color(64,57,37)};
 
-    public Color[] lightSqrOptions = {new Color(253, 255, 166), new Color(253, 249, 232)};
+    public Color[] lightSqrOptions = {new Color(253, 255, 166), new Color(211,195,163)};
 
     public Color[] highlightOptions = {new Color(246, 130, 38, 184), new Color(46, 179, 81, 184)};
 
