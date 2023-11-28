@@ -24,6 +24,8 @@ public class Pawn extends Piece {
             return false;
         } else if(board.toMove % 2 == 0 && !this.isWhite) {
             return false;
+        } else if ((col < 0 || col > 7) || (row < 0 || row > 7)) {
+            return false;
         }
 
         int colorIndex = isWhite ? 1 : -1;

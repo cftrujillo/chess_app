@@ -25,9 +25,11 @@ public class King extends Piece {
             return false;
         } else if(board.toMove % 2 == 0 && !this.isWhite) {
             return false;
+        } else if (col < 0 || col > 7 || row < 0 || row > 7) {
+            return false;
         }
 
-        return Math.abs((col - this.col) * (row - this.row)) == 1 || Math.abs(col - this.col) + Math.abs(row - this.row) == 1 || canCastle(col, row);
+        return Math.abs((col - this.col) * (row - this.row)) == 1 || Math.abs(col - this.col) + Math.abs(row - this.row) == 1  || canCastle(col, row);
     }
 
     private boolean canCastle(int col, int row) {

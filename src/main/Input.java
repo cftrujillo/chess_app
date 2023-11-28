@@ -1,11 +1,7 @@
 package main;
 
 import pieces.Piece;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
 public class Input extends MouseAdapter {
 
@@ -17,6 +13,7 @@ public class Input extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
+
         int col = e.getX() / board.tileSize;
         int row = e.getY() / board.tileSize;
 
@@ -44,6 +41,7 @@ public class Input extends MouseAdapter {
         int col = e.getX() / board.tileSize;
         int row = e.getY() / board.tileSize;
 
+
         if(board.selectedPiece != null) {
             Move move = new Move(board, board.selectedPiece, col, row);
 
@@ -59,8 +57,4 @@ public class Input extends MouseAdapter {
         board.selectedPiece = null;
         board.repaint();
     }
-
-
-
-
 }

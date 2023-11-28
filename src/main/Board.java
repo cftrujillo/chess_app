@@ -8,6 +8,14 @@ import java.util.ArrayList;
 
 public class Board extends JPanel {
 
+    public int colorIndex = 0;
+
+    public Color[] darkSqrOptions = {new Color(37, 107, 41, 255), new Color(63, 43, 12)};
+
+    public Color[] lightSqrOptions = {new Color(253, 255, 166), new Color(253, 249, 232)};
+
+    public Color[] highlightOptions = {new Color(246, 130, 38, 184), new Color(46, 179, 81, 184)};
+
     public int tileSize = 85;
 
     public int toMove = 0;
@@ -22,6 +30,8 @@ public class Board extends JPanel {
     Input input = new Input(this);
 
     public int enPassantTile = -1;
+
+    public boolean isPawnPromotion = false;
 
     public CheckScanner checkscanner = new CheckScanner(this);
 
@@ -46,7 +56,6 @@ public class Board extends JPanel {
 
 
     public boolean isValidMove(Move move) {
-        //TODO
         if(sameTeam(move.piece, move.capture)) {
             return false;
         }
@@ -137,6 +146,7 @@ public class Board extends JPanel {
     }
 
     private void promotePawn(Move move) {
+        isPawnPromotion = true;
         pieceList.add(new Queen(this, move.newCol, move.newRow, move.piece.isWhite));
         capture(move.piece);
     }
@@ -186,26 +196,83 @@ public class Board extends JPanel {
 
     }
 
+    public void changeView() {
+        for(Piece piece : pieceList) {
+            if(piece.isWhite) {
+                piece.isWhite = false;
+            } else {
+                piece.isWhite = true;
+            }
+        }
+    }
+
+    public void resetGame() {
+        pieceList.clear();
+
+        //Black pieces
+        pieceList.add(new Rook(this, 0, 0, false));
+        pieceList.add(new Knight(this, 1, 0, false));
+        pieceList.add(new Bishop(this, 2, 0, false));
+        pieceList.add(new Queen(this, 3, 0, false));
+        pieceList.add(new King(this, 4, 0, false));
+        pieceList.add(new Bishop(this, 5, 0, false));
+        pieceList.add(new Knight(this, 6, 0, false));
+        pieceList.add(new Rook(this, 7, 0, false));
+
+        pieceList.add(new Pawn(this, 0, 1, false));
+        pieceList.add(new Pawn(this, 1, 1, false));
+        pieceList.add(new Pawn(this, 2, 1, false));
+        pieceList.add(new Pawn(this, 3, 1, false));
+        pieceList.add(new Pawn(this, 4, 1, false));
+        pieceList.add(new Pawn(this, 5, 1, false));
+        pieceList.add(new Pawn(this, 6, 1, false));
+        pieceList.add(new Pawn(this, 7, 1, false));
+
+        //White pieces
+        pieceList.add(new Rook(this, 0, 7, true));
+        pieceList.add(new Knight(this, 1, 7, true));
+        pieceList.add(new Bishop(this, 2, 7, true));
+        pieceList.add(new Queen(this, 3, 7, true));
+        pieceList.add(new King(this, 4, 7, true));
+        pieceList.add(new Bishop(this, 5, 7, true));
+        pieceList.add(new Knight(this, 6, 7, true));
+        pieceList.add(new Rook(this, 7, 7, true));
+
+        pieceList.add(new Pawn(this, 0, 6, true));
+        pieceList.add(new Pawn(this, 1, 6, true));
+        pieceList.add(new Pawn(this, 2, 6, true));
+        pieceList.add(new Pawn(this, 3, 6, true));
+        pieceList.add(new Pawn(this, 4, 6, true));
+        pieceList.add(new Pawn(this, 5, 6, true));
+        pieceList.add(new Pawn(this, 6, 6, true));
+        pieceList.add(new Pawn(this, 7, 6, true));
+
+        toMove = 0;
+        enPassantTile = -1;
+        isPawnPromotion = false;
+    }
+
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         //Paint board
         for(int r = 0; r < rows; r++) {
             for(int c = 0; c < cols; c++) {
-                g2d.setColor((c+r) % 2 == 0 ? new Color (214, 199, 163) : new Color (74, 64, 41));
+                g2d.setColor((c+r) % 2 == 0 ? lightSqrOptions[colorIndex % 2] : darkSqrOptions[colorIndex % 2]);
                 g2d.fillRect(c * tileSize, r * tileSize, tileSize, tileSize);
             }
         }
 
         //Paint highlights
-        if(selectedPiece != null)
-        for(int r = 0; r < rows; r++) {
-            for(int c = 0; c < cols; c++) {
-                if(isValidMove(new Move(this, selectedPiece, c, r))) {
+        if(selectedPiece != null) {
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (isValidMove(new Move(this, selectedPiece, c, r))) {
 
-                    g2d.setColor(new Color(46, 179, 81, 184));
-                    g2d.fillRect(c * tileSize, r * tileSize, tileSize, tileSize);
+                        g2d.setColor(highlightOptions[colorIndex % 2]);
+                        g2d.fillRect(c * tileSize, r * tileSize, tileSize, tileSize);
 
+                    }
                 }
             }
         }
@@ -214,8 +281,6 @@ public class Board extends JPanel {
         for(Piece piece: pieceList) {
             piece.paint(g2d);
         }
-
-
     }
 
 }

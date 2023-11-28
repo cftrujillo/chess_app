@@ -24,6 +24,8 @@ public class Bishop extends Piece {
             return false;
         } else if(board.toMove % 2 == 0 && !this.isWhite) {
             return false;
+        } else if ((col < 0 || col > 7) || (row < 0 || row > 7)) {
+            return false;
         }
 
         return Math.abs(this.col - col) == Math.abs(this.row - row);

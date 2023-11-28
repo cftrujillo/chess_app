@@ -4,14 +4,14 @@ import pieces.Piece;
 
 public class CheckScanner {
     Board board;
+    public Piece king;
 
     public CheckScanner(Board board) {
         this.board = board;
     }
 
     public boolean isKingChecked(Move move) {
-
-        Piece king = board.findKing(move.piece.isWhite);
+        king = board.findKing(move.piece.isWhite);
         assert king != null;
 
         int kingCol = king.col;
